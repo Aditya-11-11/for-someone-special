@@ -53,7 +53,8 @@
 
         <h1 id="birthdayText">
 
-            🎉 HAPPY BIRTHDAY 🎉
+            Happy Birthday
+            <span>❤️ Anu ❤️</span>
 
         </h1>
 
@@ -88,8 +89,91 @@
 
     </section>
 
+   <!-- =========================
+     PAGE 3 - BALLOON GAME
+========================= -->
+<section id="page3">
+
+    <h2 id="balloonTitle">Pop the Balloons 🎈</h2>
+
+    <div id="balloonWrapper">
+
+        <!-- BALLOON 1 -->
+        <div class="balloon" id="b1">
+            <img src="images/balloon-1.png" alt="balloon1">
+        </div>
+
+        <!-- BALLOON 2 -->
+        <div class="balloon" id="b2">
+            <img src="images/balloon-2.png" alt="balloon2">
+        </div>
+
+        <!-- BALLOON 3 -->
+        <div class="balloon" id="b3">
+            <img src="images/balloon-3.png" alt="balloon3">
+        </div>
+
+        <!-- BALLOON 4 -->
+        <div class="balloon" id="b4">
+            <img src="images/balloon-4.png" alt="balloon4">
+        </div>
+
+        <!-- HIDDEN TEXT -->
+        <div id="hiddenText">
+            <div id="t1"></div>
+            <div id="t2"></div>
+            <div id="t3"></div>
+            <div id="t4"></div>
+        </div>
+
+    </div>
+
+    <!-- MESSAGE BELOW BALLOONS -->
+    <div id="nextMsg">
+        Some little things are waiting for you...<br>
+        Please tap to explore them.
+    </div>
+
+</section>
+
+<!-- =========================
+     PAGE 4 - CELEBRATION
+========================= -->
+<section id="page4">
+
+    <!-- BIRTHDAY MUSIC -->
+    <audio id="bgMusic" src="audio/happy-birthday.mp3"></audio>
+
+    <!-- MAIN IMAGE -->
+    <img id="cakeImg"
+         src="images/cake-candles-on.png"
+         alt="cake">
+
+    <!-- GUEST VIDEO -->
+    <video id="guestVideo"
+           style="display:none;"
+           playsinline>
+        <source src="videos/guest.mp4" type="video/mp4">
+    </video>
+
+    <!-- CAKE CUTTING VIDEO -->
+    <video id="cakeCutVideo"
+           style="display:none;"
+           playsinline>
+        <source src="videos/cake-cutting.mp4" type="video/mp4">
+    </video>
+
+    <!-- TEXT -->
+    <p id="cakeText">
+        Make a wish ❤️<br>
+        Tap to blow the candles
+    </p>
+
+</section>
+
     <script src="script.js"></script>
 
 </body>
 
 </html>
+
