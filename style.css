@@ -6,7 +6,7 @@ font-family:'Segoe UI',sans-serif;
 }
 
 body{
-overflow:hidden;
+overflow-x:hidden;
 background:white;
 }
 
@@ -25,6 +25,8 @@ justify-content:center;
 align-items:center;
 
 background:white;
+
+padding:20px;
 
 }
 
@@ -102,6 +104,8 @@ font-size:24px;
 
 font-weight:500;
 
+text-align:center;
+
 }
 
 #scanLink{
@@ -142,15 +146,17 @@ opacity:1;
 
 display:none;
 
-height:100vh;
+min-height:100vh;
 
 padding-top:30px;
+
+padding-bottom:50px;
 
 text-align:center;
 
 position:relative;
 
-overflow:hidden;
+overflow-x:hidden;
 
 background:
 linear-gradient(
@@ -163,16 +169,43 @@ linear-gradient(
 
 #birthdayText{
 
-font-size:60px;
+font-family:
+"Segoe Script",
+"Brush Script MT",
+cursive;
 
-font-weight:900;
+font-size:72px;
 
-color:#ff1493;
+font-weight:bold;
 
 opacity:0;
 
-text-shadow:
-0 0 15px rgba(255,20,147,.4);
+padding-left:15px;
+padding-right:15px;
+
+line-height:1.15;
+
+text-align:center;
+
+color:#ff1493;
+
+}
+
+#birthdayText span{
+
+display:block;
+
+margin-top:10px;
+
+font-family:inherit;
+
+font-weight:inherit;
+
+font-size:1em;
+
+color:inherit;
+
+line-height:inherit;
 
 }
 
@@ -205,6 +238,9 @@ font-weight:600;
 margin-bottom:20px;
 
 color:#333;
+
+padding-left:15px;
+padding-right:15px;
 
 }
 
@@ -248,6 +284,8 @@ background:#e74c3c;
 
 color:white;
 
+transition:transform .15s ease;
+
 }
 
 .flash{
@@ -280,6 +318,281 @@ opacity:1;
 
 100%{
 opacity:0;
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+#birthdayText{
+
+font-size:42px;
+
+line-height:1.2;
+
+}
+
+#teddyImage{
+
+width:220px;
+
+margin-top:15px;
+
+}
+
+#questionSection{
+
+margin-top:15px;
+
+}
+
+#questionSection p{
+
+font-size:18px;
+
+}
+
+button{
+
+padding:12px 22px;
+
+font-size:16px;
+
+}
+
+.btn-container{
+
+height:100px;
+
+}
+
+.tap-text{
+
+font-size:20px;
+
+}
+
+#scanLink{
+
+font-size:24px;
+
+}
+
+#qrBox{
+
+width:240px;
+
+height:240px;
+
+}
+
+}
+
+/* =========================
+   PAGE 3 - FINAL FIX (WORKING)
+========================= */
+
+#page3{
+display:none;
+min-height:100vh;
+padding:20px;
+background:white;
+text-align:center;
+}
+
+/* TITLE */
+#balloonTitle{
+font-size:30px;
+color:#ff1493;
+margin-bottom:15px;
+}
+
+/* BALLOON CONTAINER */
+#balloonWrapper{
+position:relative;
+width:320px;
+height:320px;
+margin:0 auto;
+}
+
+/* BALLOONS */
+.balloon{
+position:absolute;
+width:80px;
+cursor:pointer;
+transition:0.3s;
+z-index:2; /* ALWAYS ABOVE TEXT */
+}
+
+.balloon img{
+width:100%;
+}
+
+/* DIAMOND POSITIONS */
+#b1{top:0;left:50%;transform:translateX(-50%);}
+#b2{top:110px;left:0;}
+#b3{top:110px;right:0;}
+#b4{bottom:0;left:50%;transform:translateX(-50%);}
+
+/* POP EFFECT */
+.balloon.pop{
+transform:scale(0);
+opacity:0;
+}
+
+/* =========================
+   TEXT (BEHIND BALLOONS)
+========================= */
+
+#hiddenText{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:1; /* behind balloons */
+pointer-events:none;
+}
+
+/* DEFAULT TEXT STYLE */
+#hiddenText div{
+position:absolute;
+font-family:"Segoe Script",cursive;
+font-size:22px;
+font-weight:bold;
+color:purple;
+opacity:0;
+transition:0.4s ease;
+}
+
+/* MATCH POSITIONS EXACTLY */
+#t1{top:0;left:50%;transform:translateX(-50%);}
+#t2{top:110px;left:0;}
+#t3{top:110px;right:0;}
+#t4{
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+font-size:26px;
+font-weight:900;
+}
+
+/* =========================
+   NEXT MESSAGE (FORCED BELOW)
+========================= */
+
+#nextMsg{
+width:100%;
+max-width:500px;
+
+margin-top:40px;
+
+text-align:center;
+
+font-size:22px;
+font-weight:600;
+line-height:1.6;
+
+color:#444;
+
+opacity:0;
+transition:1s ease;
+}
+
+/* =========================
+   PAGE 4
+========================= */
+
+#page4{
+display:none;
+min-height:100vh;
+padding:20px;
+text-align:center;
+background:white;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#cakeImg{
+display:block;
+width:320px;
+max-width:90%;
+margin:0 auto;
+cursor:pointer;
+}
+
+#guestVideo{
+width:95vw;
+max-width:700px;
+max-height:85vh;
+border-radius:15px;
+object-fit:contain;
+}
+
+#cakeCutVideo{
+
+width:80vw;
+
+max-width:350px;
+
+max-height:60vh;
+
+border-radius:15px;
+
+object-fit:contain;
+
+opacity:0;
+
+margin:0 auto;
+
+display:none;
+
+}
+
+#cakeText{
+font-size:22px;
+font-weight:600;
+line-height:1.6;
+margin-top:20px;
+color:#ff1493;
+padding-left:15px;
+padding-right:15px;
+}
+
+@media(max-width:768px){
+
+#cakeImg{
+width:320px;
+max-width:90%;
+margin-top:30px;
+cursor:pointer;
+}
+
+#cakeText{
+font-size:18px;
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+#cakeImg{
+
+width:240px;
+
+}
+
+#cakeText{
+
+font-size:18px;
+
 }
 
 }
