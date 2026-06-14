@@ -6,8 +6,8 @@ font-family:'Segoe UI',sans-serif;
 }
 
 body{
-overflow-x:hidden;
-background:white;
+overflow:hidden;
+background:#f2aac2;
 }
 
 /* PAGE 1 */
@@ -24,7 +24,7 @@ justify-content:center;
 
 align-items:center;
 
-background:white;
+background:#f2aac2;
 
 padding:20px;
 
@@ -161,8 +161,8 @@ overflow-x:hidden;
 background:
 linear-gradient(
 180deg,
-#fff7fb,
-#ffffff
+#f2aac2,
+#f194b3
 );
 
 }
@@ -187,7 +187,7 @@ line-height:1.15;
 
 text-align:center;
 
-color:#ff1493;
+color:#f80707;
 
 }
 
@@ -237,7 +237,7 @@ font-weight:600;
 
 margin-bottom:20px;
 
-color:#333;
+color:purple;
 
 padding-left:15px;
 padding-right:15px;
@@ -300,7 +300,7 @@ width:100%;
 
 height:100%;
 
-background:white;
+background:#f2aac2;
 
 z-index:99999;
 
@@ -398,14 +398,14 @@ height:240px;
 display:none;
 min-height:100vh;
 padding:20px;
-background:white;
+background:#f2aac2;
 text-align:center;
 }
 
 /* TITLE */
 #balloonTitle{
 font-size:30px;
-color:#ff1493;
+color:purple;
 margin-bottom:15px;
 }
 
@@ -438,8 +438,9 @@ width:100%;
 
 /* POP EFFECT */
 .balloon.pop{
-transform:scale(0);
+transform:scale(1.5);
 opacity:0;
+transition:0.4s ease;
 }
 
 /* =========================
@@ -459,10 +460,10 @@ pointer-events:none;
 /* DEFAULT TEXT STYLE */
 #hiddenText div{
 position:absolute;
-font-family:"Segoe Script",cursive;
+font-family:"century";
 font-size:22px;
 font-weight:bold;
-color:purple;
+color:#ec250f;
 opacity:0;
 transition:0.4s ease;
 }
@@ -495,7 +496,8 @@ font-size:22px;
 font-weight:600;
 line-height:1.6;
 
-color:#444;
+color:purple;
+;
 
 opacity:0;
 transition:1s ease;
@@ -507,15 +509,21 @@ transition:1s ease;
 
 #page4{
 display:none;
-min-height:100vh;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
 padding:20px;
 text-align:center;
-background:white;
+background:#f2aac2;
 
-display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+
+overflow:hidden;
 }
 
 #cakeImg{
@@ -559,7 +567,7 @@ font-size:22px;
 font-weight:600;
 line-height:1.6;
 margin-top:20px;
-color:#ff1493;
+color:purple;
 padding-left:15px;
 padding-right:15px;
 }
@@ -569,7 +577,7 @@ padding-right:15px;
 #cakeImg{
 width:320px;
 max-width:90%;
-margin-top:30px;
+margin-top:0;
 cursor:pointer;
 }
 
@@ -593,6 +601,188 @@ width:240px;
 
 font-size:18px;
 
+}
+
+}
+
+#guestReveal{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:15px;
+z-index:10;
+width:100%;
+}
+
+#guestReveal img{
+width:260px;
+max-width:75%;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+opacity:0;
+transition:1s ease;
+}
+
+#guestReveal div{
+font-size:20px;
+font-weight:600;
+color:purple;
+text-align:center;
+opacity:0;
+transition:1s ease;
+}
+
+/* =========================
+   PAGE 5
+========================= */
+
+#page5{
+display:none;
+min-height:100vh;
+background:#f2aac2;
+color:purple;
+padding:20px;
+text-align:center;
+}
+
+#gameIntro,
+#revengeIntro,
+#revengeReport{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+#gameIntro h2,
+#revengeTitle{
+font-size:34px;
+margin-bottom:20px;
+}
+
+#gameIntro p,
+#revengeSubtitle{
+font-size:24px;
+line-height:1.6;
+}
+
+#gameArea{
+display:none;
+}
+
+#scoreBoard{
+display:flex;
+justify-content:space-between;
+max-width:350px;
+margin:0 auto 20px;
+font-size:22px;
+font-weight:bold;
+}
+
+#gameInstructions{
+font-size:20px;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+#dartBoardContainer{
+position:relative;
+width:320px;
+height:320px;
+margin:20px auto;
+}
+
+#readyDart{
+position:fixed;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+width:70px;
+z-index:100;
+transition:0.3s ease;
+}
+
+#dartBoard{
+width:100%;
+height:100%;
+object-fit:contain;
+cursor:crosshair;
+}
+
+.dart{
+position:absolute;
+width:55px;
+pointer-events:none;
+z-index:20;
+}
+
+#reactionText{
+font-size:28px;
+font-weight:bold;
+margin-top:20px;
+min-height:50px;
+}
+
+#finalScoreText{
+font-size:30px;
+font-weight:bold;
+}
+
+#painLevelText{
+font-size:26px;
+font-weight:bold;
+margin-top:15px;
+}
+
+@media(max-width:768px){
+
+#dartBoardContainer{
+width:280px;
+height:280px;
+}
+
+#gameIntro h2,
+#revengeTitle{
+font-size:26px;
+}
+
+#gameIntro p,
+#revengeSubtitle{
+font-size:20px;
+}
+
+#scoreBoard{
+font-size:18px;
+}
+
+#reactionText{
+font-size:22px;
+color:#ec250f;
+}
+
+}
+
+@media(max-width:768px){
+
+#page4{
+padding-top:6vh;
+justify-content:flex-start;
+}
+
+#gameIntro,
+#revengeIntro,
+#revengeReport{
+padding-bottom:15vh;
+}
+
+#gameArea{
+padding-top:2vh;
 }
 
 }
