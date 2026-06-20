@@ -216,7 +216,6 @@ goToPage3();
 });
 
 
-
 /* =========================
    PAGE 3 - FIXED FLOW
 ========================= */
@@ -257,14 +256,59 @@ if(nextBalloon === 5){
 
 setTimeout(()=>{
 
+/* Hide words behind balloons */
+document.getElementById("hiddenText").style.opacity = "0";
+
+/* Create center message */
+let specialMsg = document.createElement("div");
+
+specialMsg.id = "specialMsg";
+
+specialMsg.innerHTML = "YOU ARE TRULY SPECIAL <br> ANU... ❤️";
+
+specialMsg.style.position = "fixed";
+specialMsg.style.top = "50%";
+specialMsg.style.left = "50%";
+specialMsg.style.transform = "translate(-50%,-50%)";
+specialMsg.style.fontSize = "38px";
+specialMsg.style.fontWeight = "bold";
+specialMsg.style.fontFamily = "Century";
+specialMsg.style.color = "#ec250f";
+specialMsg.style.textAlign = "center";
+specialMsg.style.opacity = "0";
+specialMsg.style.transition = "1s ease";
+specialMsg.style.zIndex = "999";
+
+document.body.appendChild(specialMsg);
+
+/* Fade In */
+setTimeout(()=>{
+specialMsg.style.opacity = "1";
+},100);
+
+/* Stay for 2 sec */
+setTimeout(()=>{
+
+specialMsg.style.opacity = "0";
+
+/* Remove message */
+setTimeout(()=>{
+
+specialMsg.remove();
+
+/* Show next message */
 let msg = document.getElementById("nextMsg");
-msg.style.opacity = 1;
+msg.style.opacity = "1";
 
 setTimeout(()=>{
 document.addEventListener("click",goToCake,{once:true});
 },300);
 
-},1500); // ⭐ 1.5 sec delay AFTER SPECIAL appears
+},1000);
+
+},2000);
+
+},1500);
 
 }
 
@@ -310,10 +354,48 @@ if(page4State === 0){
 
 audio.pause();
 
-cake.src = "images/door.png";
+/* Hide cake image initially */
+cake.style.display = "none";
+
+/* Show message first */
+text.style.opacity = "1";
 
 text.innerHTML =
-"Hey, look who's here to celebrate your birthday 🥳<br><br>Tap to open the door";
+"Oh my gosh, look who's peeking through the door! 👀";
+
+/* After 2 sec fade out text */
+setTimeout(()=>{
+
+text.style.transition = "opacity 1s ease";
+text.style.opacity = "0";
+
+setTimeout(()=>{
+
+/* Show door image */
+cake.style.display = "block";
+cake.src = "images/door.png";
+cake.classList.add("doorLarge");
+cake.style.width = "450px";
+cake.style.maxWidth = "95%";
+cake.style.opacity = "0";
+cake.style.transition = "opacity 1s ease";
+
+setTimeout(()=>{
+cake.style.opacity = "1";
+},50);
+
+/* After 1 sec show tap message */
+setTimeout(()=>{
+
+text.style.opacity = "1";
+text.innerHTML =
+"Tap to welcome them in... 😉";
+
+},1000);
+
+},1000);
+
+},2000);
 
 page4State = 1;
 return;
@@ -343,6 +425,9 @@ guestVideo.style.display = "none";
 
 cake.style.display = "block";
 cake.src = "images/cake-candles-on.png";
+cake.classList.remove("doorLarge");
+cake.style.width = "";
+cake.style.maxWidth = "90%";
 
 text.innerHTML =
 "Make a wish ❤️<br>Tap to blow the candles";
@@ -585,13 +670,18 @@ document.getElementById("revengeIntro")
 
 setTimeout(()=>{
 
-document.getElementById("revengeIntro")
-.style.display="none";
-
-document.getElementById("gameArea")
-.style.display="block";
+document.getElementById("revengeIntro").style.display="none";
+document.getElementById("gameRules").style.display="flex";
 
 },1000);
+
+document.getElementById("gameRules")
+.addEventListener("click",()=>{
+
+document.getElementById("gameRules").style.display="none";
+document.getElementById("gameArea").style.display="block";
+
+});
 
 });
 
@@ -608,26 +698,6 @@ let scoreSpan = document.getElementById("score");
 let dartsSpan = document.getElementById("dartsLeft");
 
 let readyDart = document.getElementById("readyDart");
-
-/* =========================
-   INTRO FLOW
-========================= */
-
-document.getElementById("gameIntro")
-.addEventListener("click",()=>{
-
-document.getElementById("gameIntro").style.display="none";
-
-document.getElementById("revengeIntro").style.display="flex";
-
-setTimeout(()=>{
-
-document.getElementById("revengeIntro").style.display="none";
-document.getElementById("gameArea").style.display="block";
-
-},1000);
-
-});
 
 /* =========================
    TOUCH SWIPE
@@ -658,7 +728,7 @@ let distance = Math.sqrt(dx*dx + dy*dy);
 
 if(distance < 30) return;
 
-animateDartThrow(()=>throwDart());
+throwDart();
 
 });
 
@@ -691,44 +761,13 @@ let distance = Math.sqrt(dx*dx + dy*dy);
 
 if(distance < 30) return;
 
-animateDartThrow(()=>throwDart());
+throwDart();
 
 });
 
 /* =========================
-   READY DART ANIMATION
-========================= */
-
-function animateDartThrow(callback){
-
-if(!readyDart) {
-callback();
-return;
-}
-
-/* shoot dart upward */
-readyDart.style.transition = "0.4s ease";
-readyDart.style.transform = "translate(-50%, -200px) scale(0.8)";
-readyDart.style.opacity = "0";
-
-setTimeout(()=>{
-
-/* reset dart back to ready position */
-readyDart.style.transition = "0s";
-readyDart.style.transform = "translateX(-50%)";
-readyDart.style.opacity = "1";
-
-/* execute actual game logic */
-callback();
-
-},350);
-
-}
-
-/* =========================
    THROW DART (LOGIC SAME)
 ========================= */
-
 function throwDart(){
 
 let rand=Math.random();
@@ -736,88 +775,63 @@ let rand=Math.random();
 let score=0;
 let message="";
 
-let x=160;
-let y=160;
+let boardSize = board.offsetWidth;
+
+let x=boardSize/2;
+let y=boardSize/2;
 
 if(rand<0.45){
 score=100;
 message="OUCH 😭";
-x=150+Math.random()*20;
-y=150+Math.random()*20;
+x=boardSize*0.47 + Math.random()*20;
+y=boardSize*0.47 + Math.random()*20;
 }
 else if(rand<0.65){
 score=80;
 message="I saw that coming 😅";
-x=120+Math.random()*80;
-y=120+Math.random()*80;
+x=boardSize*0.35 + Math.random()*60;
+y=boardSize*0.35 + Math.random()*60;
 }
 else if(rand<0.80){
 score=50;
 message="Not bad 😜";
-x=90+Math.random()*140;
-y=90+Math.random()*140;
+x=boardSize*0.25 + Math.random()*100;
+y=boardSize*0.25 + Math.random()*100;
 }
 else if(rand<0.90){
 score=20;
 message="You almost got me 😆";
-x=40+Math.random()*240;
-y=40+Math.random()*240;
+x=40 + Math.random()*(boardSize-80);
+y=40 + Math.random()*(boardSize-80);
 }
 else{
 score=0;
 message="Target escaped 😂";
-x=Math.random()*320;
-y=Math.random()*320;
+x=Math.random()*boardSize;
+y=Math.random()*boardSize;
 }
 
-/* create dart hit animation */
-createDart(x,y);
-
-totalScore += score;
-dartsLeft--;
-
-scoreSpan.innerText = totalScore;
-dartsSpan.innerText = dartsLeft;
-
-setTimeout(()=>{
-reaction.innerText = message;
-},850);
-
-if(dartsLeft === 0){
-setTimeout(showReport,2000);
-}
+animateDartToTarget(x,y,score,message);
 
 }
 
-/* =========================
-   DART ON BOARD ANIMATION
-========================= */
+function animateDartToTarget(x,y,score,message){
 
-function createDart(x,y){
+let boardRect = board.getBoundingClientRect();
 
-let dart = document.createElement("img");
+let targetX = boardRect.left + x;
+let targetY = boardRect.top + y;
 
-dart.src = "images/dart.png";
-dart.className = "dart";
+readyDart.style.transition =
+"all .35s cubic-bezier(.17,.67,.24,1.22)";
 
-/* start from bottom */
-dart.style.left = "50%";
-dart.style.top = "450px";
-dart.style.transform = "translate(-50%,-50%) scale(0.2)";
+readyDart.style.left = targetX + "px";
+readyDart.style.top = targetY + "px";
+readyDart.style.bottom = "auto";
 
-board.appendChild(dart);
+readyDart.style.transform =
+`translate(-50%,-50%) rotate(${Math.random()*60-30}deg)`;
 
-setTimeout(()=>{
-
-dart.style.transition = "all 0.8s cubic-bezier(.17,.67,.24,1.22)";
-dart.style.left = x + "px";
-dart.style.top = y + "px";
-dart.style.transform =
-`translate(-50%,-50%) scale(1) rotate(${Math.random()*80-40}deg)`;
-
-},20);
-
-/* board shake */
 setTimeout(()=>{
 
 board.animate([
@@ -825,10 +839,32 @@ board.animate([
 {transform:"scale(1.03)"},
 {transform:"scale(1)"}
 ],{
-duration:200
+duration:150
 });
 
-},800);
+totalScore += score;
+dartsLeft--;
+
+scoreSpan.innerText = totalScore;
+dartsSpan.innerText = dartsLeft;
+
+reaction.innerText = message;
+
+setTimeout(()=>{
+
+readyDart.style.transition="none";
+readyDart.style.left="50%";
+readyDart.style.top="auto";
+readyDart.style.bottom="40px";
+readyDart.style.transform="translateX(-50%)";
+
+},400);
+
+if(dartsLeft===0){
+setTimeout(showReport,1500);
+}
+
+},350);
 
 }
 
