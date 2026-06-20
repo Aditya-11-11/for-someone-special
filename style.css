@@ -480,6 +480,33 @@ font-size:26px;
 font-weight:900;
 }
 
+#specialMessage{
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:38px;
+font-weight:900;
+
+color:#ec250f;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:1s ease;
+
+z-index:5;
+
+text-align:center;
+
+width:90%;
+
+}
 /* =========================
    NEXT MESSAGE (FORCED BELOW)
 ========================= */
@@ -501,6 +528,12 @@ color:purple;
 
 opacity:0;
 transition:1s ease;
+}
+
+@media(max-width:768px){
+#specialMessage{
+font-size:28px;
+}
 }
 
 /* =========================
@@ -579,6 +612,13 @@ width:320px;
 max-width:90%;
 margin-top:0;
 cursor:pointer;
+}
+
+#cakeImg.doorLarge{
+
+width:340px;
+max-width:95%;
+
 }
 
 #cakeText{
@@ -691,6 +731,25 @@ line-height:1.6;
 margin-bottom:20px;
 }
 
+#gameRules{
+display:none;
+min-height:100vh;
+padding-top:80px;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+#gameRules h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+#gameRules p{
+font-size:22px;
+line-height:1.8;
+}
+
 #dartBoardContainer{
 position:relative;
 width:320px;
@@ -703,7 +762,7 @@ position:fixed;
 bottom:40px;
 left:50%;
 transform:translateX(-50%);
-width:70px;
+width:45px;
 z-index:100;
 transition:0.3s ease;
 }
@@ -720,6 +779,11 @@ position:absolute;
 width:55px;
 pointer-events:none;
 z-index:20;
+
+filter:
+drop-shadow(0 4px 6px rgba(0,0,0,.35));
+
+transform-origin:center center;
 }
 
 #reactionText{
@@ -783,6 +847,18 @@ padding-bottom:15vh;
 
 #gameArea{
 padding-top:2vh;
+}
+
+#gameRules{
+padding-top:60px;
+}
+
+#gameRules h2{
+font-size:24px;
+}
+
+#gameRules p{
+font-size:18px;
 }
 
 }
