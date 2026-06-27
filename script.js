@@ -894,3 +894,29 @@ painLevel="Pain Level: Extremely High 😭";
 
 document.getElementById("painLevelText").innerHTML = painLevel;
 }
+document.getElementById("revengeReport")
+.addEventListener("click",()=>{
+
+    document.getElementById("revengeReport").style.display="none";
+
+    // Show Congratulations screen
+    document.getElementById("quizIntro").style.display="flex";
+
+    // Automatically change after 3 seconds
+    setTimeout(()=>{
+
+        document.getElementById("quizIntro").style.display="none";
+
+        document.getElementById("quizWelcome").style.display="flex";
+
+    },3000);
+
+},{once:true});
+
+
+document.getElementById("quizWelcome")
+.addEventListener("click",()=>{
+
+    // NEXT PAGE WILL COME HERE
+
+});
