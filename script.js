@@ -920,3 +920,146 @@ document.getElementById("quizWelcome")
     // NEXT PAGE WILL COME HERE
 
 });
+/* =========================
+   QUIZ SECTION
+========================= */
+
+// Open Quiz from Welcome screen
+
+document.getElementById("quizWelcome")
+.addEventListener("click",()=>{
+
+    document.getElementById("quizWelcome").style.display="none";
+
+    document.getElementById("quizPage").style.display="flex";
+
+    showQuestion(0);
+
+});
+
+
+const quizScreens = document.querySelectorAll(".quizScreen");
+
+let currentQuestion = 0;
+
+
+/* SHOW QUESTION */
+
+function showQuestion(index){
+
+    quizScreens.forEach(q=>{
+        q.classList.remove("active");
+    });
+
+    quizScreens[index].classList.add("active");
+
+    currentQuestion = index;
+
+}
+
+
+/* NEXT QUESTION */
+
+function nextQuestion(){
+
+    if(currentQuestion < quizScreens.length-1){
+
+        quizScreens[currentQuestion].classList.remove("active");
+
+        currentQuestion++;
+
+        quizScreens[currentQuestion].classList.add("active");
+
+    }
+
+}
+
+
+/* =========================
+   MCQ QUESTIONS
+========================= */
+
+document.querySelectorAll(".quizOption").forEach(btn=>{
+
+    btn.addEventListener("click",function(){
+
+        let parent = this.parentElement;
+
+        parent.querySelectorAll(".quizOption")
+        .forEach(b=>b.classList.remove("selected"));
+
+        this.classList.add("selected");
+
+        setTimeout(()=>{
+
+            nextQuestion();
+
+        },1000);
+
+    });
+
+});
+
+
+/* =========================
+   TEXT QUESTIONS
+========================= */
+
+document.querySelectorAll(".nextQuestion").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        nextQuestion();
+
+    });
+
+});
+
+
+/* =========================
+   ANY OTHER OPTION
+========================= */
+
+document.querySelectorAll(".otherBtn").forEach(btn=>{
+
+    btn.addEventListener("click",function(){
+
+        this.classList.add("selected");
+
+        let screen = this.closest(".quizScreen");
+
+        let input = screen.querySelector(".otherInput");
+
+        let next = screen.querySelector(".otherNext");
+
+        input.style.display="block";
+
+        next.style.display="inline-block";
+
+        input.focus();
+
+    });
+
+});
+
+
+/* =========================
+   ENTER KEY SUPPORT
+========================= */
+
+document.querySelectorAll(".quizInput,.otherInput")
+.forEach(box=>{
+
+    box.addEventListener("keydown",(e)=>{
+
+        if(e.key==="Enter" && !e.shiftKey){
+
+            e.preventDefault();
+
+            nextQuestion();
+
+        }
+
+    });
+
+});
